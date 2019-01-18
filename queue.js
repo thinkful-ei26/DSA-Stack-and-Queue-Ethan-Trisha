@@ -69,7 +69,7 @@ const squareDancing = (person) => {
     dancePairs += `${person.name} and ${spareQueue.first.value.name} are dancing\n`;
     spareQueue.dequeue();
   }
-  console.log(dancePairs);
+  // console.log(dancePairs);
 };
 
 const spareQueue = new Queue();
@@ -82,7 +82,39 @@ squareDancing({name: 'David', gender: 'm'});
 squareDancing({name: 'Christopher', gender: 'm'});
 squareDancing({name: 'Beyonce', gender: 'f'});
 
-display(spareQueue);
+// display(spareQueue);
+
+const ophidian = (customers) => {
+  while(customers.first !== null){
+    //25% of the time it fails
+    let random = Math.floor(Math.random() * Math.floor(4));
+    if(random <= 1){
+      //enqueue customer 
+      console.log(customers.first.value, 'is back in line');
+      customers.enqueue(customers.first.value);
+    } else {
+      // console.log(customers.dequeue());
+      console.log(customers.first.value, 'has been helped');
+      customers.dequeue();
+    }
+  }
+  return 'line is empty';
+};
+
+const customers = new Queue();
+customers.enqueue('Bob');
+customers.enqueue('Lisa');
+customers.enqueue('Tommy');
+
+// console.log(customers);
+ophidian(customers);
+// // Math.floor(Math.random() * 4);
+// console.log(Math.floor(Math.random() * 4));
+// console.log(Math.floor(Math.random() * 4));
+// console.log(Math.floor(Math.random() * 4));
+// // console.log(random);
+// // console.log(random);
+// // console.log(random);
 
 const main = () => {
   const starTrekQ = new Queue();
