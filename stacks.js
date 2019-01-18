@@ -29,12 +29,15 @@ class Stack {
     }
     const node = this.top;
     this.top = node.next;
-    return node;
+    return node.data;
   }
 }
 
 function peek(stack){
-  console.log(stack.top.data);
+  if(stack.top === null){
+    return null;
+  }
+  return stack.top.data;
 }
 
 function display(stack) {
@@ -129,7 +132,71 @@ const parens = (str) => {
   // console.log(stack);
 };
 
-console.log(parens('543034-455)')); // (,)
+// console.log(parens('543034-455)')); // (,)
+
+const isEmpty = (stack) => {
+  if(stack.top === null){
+    return true;
+  }
+  return false;
+};
+
+function sortStack(stack){
+  // input is (1, 2, 9, 5)
+  // input stack: (5, 9, 2, 1)
+  // output stack: 1, 2, 5, 9
+
+  let newStack = new Stack();
+  
+  while(!isEmpty(stack)) {
+    console.log('peek newStack',peek(newStack));
+    let tempNode = stack.pop(); 
+    console.log('tempNode',tempNode);
+    while(!isEmpty(newStack) && (peek(newStack) > tempNode)){
+      stack.push(newStack.pop());
+    }
+    newStack.push(tempNode);
+    console.log('newStack top after', peek(newStack));  
+  }
+  return newStack;
+}
+
+const testStack = new Stack();
+testStack.push(1);
+testStack.push(2);
+testStack.push(9);
+testStack.push(5);
+
+// console.log(sortStack(testStack));
+display(sortStack(testStack));
+// console.log(testStack);
+// display(testStack);
+
+// display(testStack);
+
+// if(stack.top && (stack.top.data > tempNode)){
+//   newStack.push(stack.top.data);
+//   console.log('new stack top is', newStack.top.data);
+//   stack.pop();
+//   // console.log('tempNode',tempNode.data);
+// } else if (stack.top && (stack.top.data <= tempNode)){
+//   // console.log(tempNode);
+//   newStack.push(tempNode);
+//   console.log('stacktop before switch is', stack.top.data);
+//   console.log('tempNode before switch is', tempNode);
+//   tempNode = stack.top.data;
+//   console.log('stacktop after switch is', stack.top.data);
+//   console.log('tempNode after switch is', tempNode);
+//   stack.pop();
+// }
+
+
+
+// create the new Stack, 
+// feed it with data 
+// make the data into a variable 1, 2, 9, 5
+// store current top node, make some checks (< or > value) 
+// pop and insert to the new stack
 
 const main = () => {
   const starTrek = new Stack();
