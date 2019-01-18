@@ -17,9 +17,10 @@ class Stack {
     //check if its empty
     if(this.top === null){
       this.top = new _Node(data, null);
+      return this.top;
     }
-    // const node = this.top;
-    this.top = new _Node(data, this.top);
+    const node = new _Node(data, this.top);
+    this.top = node;
   }
 
   //removes the item on top
